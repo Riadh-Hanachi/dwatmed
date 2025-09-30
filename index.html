@@ -300,6 +300,30 @@
             font-weight: 600;
             padding: 15px 20px;
         }
+
+        /* Congress Poster Styles */
+        .poster-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .poster-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .poster-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .download-btn {
+            margin-top: 20px;
+        }
         
         /* Video Embed Section */
         .video-embed-section {
@@ -1022,6 +1046,26 @@
                                 <div class="card-header" data-i18n="safety_access">SAFETY AND ACCESS</div>
                                 <div class="card-body">
                                     <p data-i18n="safety_access_desc">Risk-based approaches to ensure safe drinking water, equitable access, and resilience in the face of environmental and socio-economic pressures.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <!-- Congress Poster Section -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title text-center" data-aos="fade-up">Congress Poster</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8" data-aos="zoom-in">
+                            <div class="poster-container">
+                                <img src="affiche.png" alt="DWatMed 2026 Congress Poster" class="poster-image">
+                                <div class="mt-4">
+                                    <a href="affiche.png" download="DWatMed2026_Poster.png" class="btn btn-primary btn-lg download-btn">
+                                        <i class="fas fa-download me-2"></i>Download Congress Poster
+                                    </a>
                                 </div>
                             </div>
                         </div>
