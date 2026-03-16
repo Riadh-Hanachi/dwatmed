@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DW-MENA 2026 – MENA Drinking Water Conference</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a2342;
+            --teal: #0d7377;
+            --gold: #c9a84c;
+            --gold-light: #e8c96a;
+            --sky: #14919b;
+            --sand: #f4ede4;
+            --white: #ffffff;
+            --light-bg: #f7f9fc;
+            --text-dark: #1a2a3a;
+            --text-mid: #4a5568;
+            --text-light: #718096;
+            --border: rgba(10,35,66,0.12);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+            padding-top: 110px;
+        }
+
+        /* ─── TOP BAR ─── */
+        .top-bar {
+            background: var(--navy);
+            color: rgba(255,255,255,0.85);
+            padding: 7px 0;
+            font-size: 0.82rem;
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1050;
+        }
+        .top-bar a { color: rgba(255,255,255,0.85); text-decoration: none; margin-right: 18px; transition: color .2s; }
+        .top-bar a:hover { color: var(--gold-light); }
+        .top-bar .lang-select {
+            background: transparent; border: 1px solid rgba(255,255,255,0.3);
+            color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.8rem;
+        }
+        .top-bar .lang-select option { background: var(--navy); }
+        .social-icon { color: rgba(255,255,255,0.7); margin-left: 10px; transition: color .2s; }
+        .social-icon:hover { color: var(--gold-light); }
+
+        /* ─── NAVBAR ─── */
+        .navbar {
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(10,35,66,0.1);
+            position: fixed; top: 37px; width: 100%;
+            z-index: 1040; padding: 10px 0;
+            transition: all .3s;
+        }
+        .navbar.scrolled { padding: 6px 0; box-shadow: 0 4px 24px rgba(10,35,66,0.13); }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900; font-size: 1.5rem;
+            color: var(--navy); display: flex; align-items: center; gap: 10px;
+        }
+        .navbar-brand img { height: 52px; }
+        .brand-text-small { font-size: 0.75rem; font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text-mid); display: block; }
+        .nav-link {
+            font-weight: 500; color: var(--text-dark) !important;
+            margin: 0 6px; font-size: 0.9rem;
+            position: relative; transition: color .2s;
+        }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -3px; left: 0;
+            width: 0; height: 2px; background: var(--teal); transition: width .3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover, .nav-link.active { color: var(--teal) !important; }
+        .btn-register {
+            background: var(--teal); color: #fff !important;
+            border: none; padding: 8px 20px; border-radius: 6px;
+            font-size: 0.85rem; font-weight: 600; transition: all .3s;
+        }
+        .btn-register:hover { background: var(--navy); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(13,115,119,0.35); }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            min-height: calc(100vh - 110px);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; text-align: center; color: #fff;
+        }
+        .hero-video {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; object-fit: cover; z-index: -2;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0; z-index: -1;
+            background: linear-gradient(160deg, rgba(10,35,66,0.88) 0%, rgba(13,115,119,0.75) 100%);
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201,168,76,0.2);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 2px;
+            text-transform: uppercase; padding: 6px 18px;
+            border-radius: 40px; margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 700; line-height: 1.2;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+        .hero h1 em { font-style: normal; color: var(--gold-light); }
+        .hero .subtitle {
+            font-size: 1.1rem; opacity: 0.92; margin-bottom: 10px; font-weight: 300;
+        }
+        .hero .date-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+            padding: 8px 22px; border-radius: 40px;
+            font-size: 0.95rem; font-weight: 500; margin: 14px 0 28px;
+        }
+        .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+        .btn-hero-primary {
+            background: var(--gold); color: var(--navy);
+            border: none; padding: 13px 32px; border-radius: 8px;
+            font-weight: 700; font-size: 0.95rem; transition: all .3s;
+        }
+        .btn-hero-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.4); }
+        .btn-hero-outline {
+            background: transparent; color: #fff;
+            border: 2px solid rgba(255,255,255,0.5); padding: 13px 32px;
+            border-radius: 8px; font-weight: 500; transition: all .3s;
+        }
+        .btn-hero-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); color: #fff; }
+
+        /* ─── COUNTDOWN STRIP ─── */
+        .countdown-strip {
+            background: var(--navy);
+            padding: 20px 0; text-align: center; color: #fff;
+        }
+        .countdown-strip .label {
+            font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 12px; font-weight: 600;
+        }
+        .countdown-timer { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .cd-item {
+            background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px; padding: 14px 20px; min-width: 90px;
+        }
+        .cd-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; line-height: 1; }
+        .cd-lab { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.6; margin-top: 4px; }
+
+        /* ─── SECTION BASE ─── */
+        .section { padding: 80px 0; }
+        .section-bg { background: var(--light-bg); }
+        .section-sand { background: var(--sand); }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 700; color: var(--navy);
+            margin-bottom: 14px; position: relative; padding-bottom: 16px;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 48px; height: 3px;
+            background: linear-gradient(90deg, var(--teal), var(--gold));
+            border-radius: 2px;
+        }
+        .section-title.centered::after { left: 50%; transform: translateX(-50%); }
+        .section-eyebrow {
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 2.5px;
+            text-transform: uppercase; color: var(--teal); margin-bottom: 10px;
+        }
+
+        /* ─── ABOUT CARDS ─── */
+        .focus-card {
+            background: #fff; border: 1px solid var(--border);
+            border-radius: 14px; padding: 32px 28px;
+            transition: all .3s; height: 100%;
+        }
+        .focus-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(10,35,66,0.1); border-color: var(--teal); }
+        .focus-icon {
+            width: 52px; height: 52px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--teal), var(--sky));
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 1.3rem; margin-bottom: 18px;
+        }
+        .focus-card h5 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 10px; }
+        .focus-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
+
+        /* ─── VIDEO ─── */
+        .video-wrapper {
+            position: relative; padding-bottom: 56.25%; height: 0;
+            border-radius: 14px; overflow: hidden;
+            box-shadow: 0 16px 48px rgba(10,35,66,0.15);
+        }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* ─── POSTER ─── */
+        .poster-image {
+            width: 100%; max-width: 520px; height: auto;
+            border-radius: 14px; box-shadow: 0 16px 48px rgba(10,35,66,0.18);
+            transition: transform .3s;
+        }
+        .poster-image:hover { transform: scale(1.02); }
+
+        /* ─── PAGE HEADER ─── */
+        .page-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+            color: #fff; padding: 80px 0 56px; text-align: center;
+        }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; }
+        .page-header p { opacity: 0.85; margin-top: 10px; }
+
+        /* ─── BREADCRUMB ─── */
+        .breadcrumb-nav { background: var(--light-bg); padding: 10px 0; }
+        .breadcrumb { margin: 0; background: transparent; }
+        .breadcrumb-item a { color: var(--teal); text-decoration: none; }
+        .breadcrumb-item.active { color: var(--text-mid); }
+        .breadcrumb-item + .breadcrumb-item::before { color: var(--text-mid); }
+
+        /* ─── COMMITTEE ─── */
+        .committee-card {
+            text-align: center; padding: 28px 20px;
+            border-radius: 14px; background: #fff;
+            border: 1px solid var(--border); transition: all .3s; height: 100%;
+        }
+        .committee-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(10,35,66,0.1); }
+        .member-photo {
+            width: 110px; height: 110px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--teal); margin: 0 auto 14px;
+        }
+        .committee-card h5 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 1rem; margin-bottom: 4px; }
+        .committee-card .title { color: var(--text-mid); font-size: 0.82rem; font-style: italic; margin-bottom: 8px; }
+        .committee-card .role { font-size: 0.78rem; color: var(--text-light); }
+        .social-links { margin-top: 12px; display: flex; justify-content: center; gap: 10px; }
+        .social-links a { color: var(--teal); font-size: 1rem; transition: color .2s; }
+        .social-links a:hover { color: var(--navy); }
+
+        /* ─── TABLE ─── */
+        .fee-table thead { background: var(--navy); color: #fff; }
+        .fee-table th { padding: 14px 16px; font-weight: 600; }
+        .fee-table td { padding: 12px 16px; }
+        .fee-table tbody tr:hover { background: var(--light-bg); }
+
+        /* ─── TIMELINE ─── */
+        .timeline-item-row {
+            display: flex; align-items: flex-start; gap: 20px;
+            padding: 18px 0; border-bottom: 1px solid var(--border);
+        }
+        .timeline-item-row:last-child { border-bottom: none; }
+        .tl-dot {
+            width: 14px; height: 14px; border-radius: 50%;
+            background: var(--teal); flex-shrink: 0; margin-top: 5px;
+            box-shadow: 0 0 0 4px rgba(13,115,119,0.15);
+        }
+        .tl-date { font-weight: 700; color: var(--navy); font-size: 0.95rem; margin-bottom: 2px; }
+        .tl-event { color: var(--text-mid); font-size: 0.88rem; }
+
+        /* ─── GALLERY ─── */
+        .gallery-item { position: relative; border-radius: 12px; overflow: hidden; height: 240px; margin-bottom: 24px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(0deg, rgba(10,35,66,0.8) 0%, transparent 60%);
+            opacity: 0; transition: opacity .3s;
+            display: flex; align-items: flex-end; padding: 16px;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay p { color: #fff; font-size: 0.88rem; margin: 0; }
+
+        /* ─── SPONSORS ─── */
+        .sponsor-tier-title {
+            font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-light); margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+        }
+        .sponsor-tier-title::before, .sponsor-tier-title::after {
+            content: ''; flex: 1; height: 1px; background: var(--border);
+        }
+        .sponsor-logo {
+            height: 80px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--border); border-radius: 10px; padding: 16px;
+            filter: grayscale(80%); transition: all .3s;
+        }
+        .sponsor-logo:hover { filter: grayscale(0%); border-color: var(--teal); box-shadow: 0 6px 20px rgba(10,35,66,0.08); }
+        .sponsor-logo img { max-height: 100%; max-width: 100%; object-fit: contain; }
+
+        /* ─── FORM ─── */
+        .form-section { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 40px; }
+        .form-control, .form-select {
+            border: 1px solid var(--border); border-radius: 8px;
+            padding: 10px 14px; font-size: 0.9rem; transition: border-color .2s;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--teal); box-shadow: 0 0 0 3px rgba(13,115,119,0.12);
+        }
+        .form-label { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--teal), var(--sky));
+            color: #fff; border: none; padding: 13px 40px;
+            border-radius: 8px; font-weight: 700; transition: all .3s;
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,115,119,0.35); color: #fff; }
+
+        /* ─── CONTACT CARDS ─── */
+        .contact-card {
+            background: #fff; border: 1px solid var(--border); border-radius: 14px;
+            padding: 32px 24px; text-align: center; height: 100%; transition: all .3s;
+        }
+        .contact-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(10,35,66,0.08); }
+        .contact-icon {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--teal), var(--sky));
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 1.3rem; margin: 0 auto 16px;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.75); padding: 60px 0 24px;
+        }
+        footer h5 { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.05rem; margin-bottom: 18px; }
+        footer a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color .2s; }
+        footer a:hover { color: var(--gold-light); }
+        footer ul { list-style: none; padding: 0; }
+        footer ul li { margin-bottom: 8px; font-size: 0.88rem; }
+        .footer-divider { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 40px; }
+        .footer-bottom { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+        .footer-social a { color: rgba(255,255,255,0.55); font-size: 1rem; margin-right: 14px; transition: color .2s; }
+        .footer-social a:hover { color: var(--gold-light); }
+
+        /* ─── PAGE CONTENT ─── */
+        .page-content { display: none; animation: fadeIn .45s ease; }
+        .page-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ─── SCROLL INDICATOR ─── */
+        .scroll-indicator {
+            position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%,100% { transform: translateY(0) translateX(-50%); }
+            50% { transform: translateY(-8px) translateX(-50%); }
+        }
+
+        /* ─── STATS BAR ─── */
+        .stats-bar {
+            background: var(--teal); color: #fff; padding: 28px 0;
+        }
+        .stat-item { text-align: center; }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold-light); }
+        .stat-lab { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.85; margin-top: 4px; }
+
+        /* ─── ALERT ─── */
+        .alert-info-custom {
+            background: rgba(13,115,119,0.08); border: 1px solid rgba(13,115,119,0.25);
+            border-left: 4px solid var(--teal); border-radius: 8px; padding: 16px 20px;
+            color: var(--text-dark);
+        }
+        .alert-info-custom a { color: var(--teal); font-weight: 600; }
+
+        /* ─── CARD OVERRIDE ─── */
+        .card { border: 1px solid var(--border); border-radius: 12px; box-shadow: none; transition: all .3s; }
+        .card:hover { box-shadow: 0 10px 30px rgba(10,35,66,0.08); }
+        .card-header { background: var(--navy); color: #fff; font-weight: 600; padding: 14px 20px; border-bottom: none; }
+        .list-group-item { font-size: 0.88rem; color: var(--text-mid); border-color: var(--border); }
+
+        /* ─── SCHEDULE TABLE ─── */
+        .schedule-table th { background: var(--teal); color: #fff; font-size: 0.85rem; padding: 12px 16px; }
+        .schedule-table td { font-size: 0.85rem; padding: 10px 16px; border-color: var(--border); }
+        .schedule-table tr:nth-child(even) td { background: var(--light-bg); }
+        .schedule-tag {
+            display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: .5px;
+            padding: 3px 10px; border-radius: 20px; margin-left: 6px;
+        }
+        .tag-keynote { background: rgba(201,168,76,.15); color: #8a6700; }
+        .tag-session { background: rgba(13,115,119,.12); color: var(--teal); }
+        .tag-workshop { background: rgba(10,35,66,.1); color: var(--navy); }
+        .tag-social { background: rgba(201,168,76,.2); color: #7a5c00; }
+
+        /* ─── TOPICS ─── */
+        .topic-card {
+            background: #fff; border: 1px solid var(--border); border-radius: 14px;
+            padding: 28px; transition: all .3s; height: 100%;
+        }
+        .topic-card:hover { border-color: var(--teal); box-shadow: 0 12px 32px rgba(10,35,66,0.09); }
+        .topic-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: rgba(13,115,119,0.12); line-height: 1; margin-bottom: 8px; }
+        .topic-card h5 { font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 10px; }
+        .badge-topic { font-size: 0.72rem; padding: 4px 10px; border-radius: 20px; margin: 2px; background: var(--light-bg); color: var(--text-mid); border: 1px solid var(--border); }
+
+        /* ─── MODAL ─── */
+        .modal-header { background: var(--navy); color: #fff; border-radius: 12px 12px 0 0; }
+        .modal-header .btn-close { filter: invert(1); }
+        .modal-content { border-radius: 14px; border: none; }
+        .modal-body { max-height: 420px; overflow-y: auto; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 992px) {
+            body { padding-top: 120px; }
+            .navbar { top: 37px; }
+            .navbar-collapse { background: #fff; border-radius: 10px; padding: 18px; margin-top: 8px; box-shadow: 0 8px 24px rgba(10,35,66,0.1); }
+        }
+        @media (max-width: 768px) {
+            body { padding-top: 110px; }
+            .top-bar { padding: 5px 0; }
+            .hero { min-height: 80vh; }
+            .section { padding: 56px 0; }
+            .form-section { padding: 24px 18px; }
+            .navbar { top: 37px; }
+        }
+        @media (max-width: 576px) {
+            .hero h1 { font-size: 1.9rem; }
+            .cd-num { font-size: 1.7rem; }
+            .cd-item { min-width: 68px; padding: 10px 12px; }
+            .stat-num { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ TOP BAR ═══ -->
+<div class="top-bar">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div class="d-flex gap-3 flex-wrap">
+                <a href="tel:+21658262924"><i class="fas fa-phone me-1"></i>+216 58 262 924</a>
+                <a href="/cdn-cgi/l/email-protection#f397849e969d92b39096818796dd819d8187dd879d"><i class="fas fa-envelope me-1"></i><span class="__cf_email__" data-cfemail="fa9e8d979f949bba999f888e9fd48894888ed48e94">[email&#160;protected]</span></a>
+                <a href="#"><i class="fas fa-map-marker-alt me-1"></i>Hammamet, Tunisia</a>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <select id="language-select" class="lang-select">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                </select>
+                <div>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="#" data-page="home">
+            <img src="dwatmed.png" alt="DW-MENA Logo" onerror="this.style.display='none'">
+            <div>
+                <span>DW-MENA</span>
+                <span class="brand-text-small">MENA Drinking Water Conference</span>
+            </div>
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#" data-page="home" data-i18n="home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-page="about" data-i18n="about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-page="cfp">Call for Papers</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-page="topics" data-i18n="topics">Topics</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-page="committees" data-i18n="committees">Committees</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-page="registration" data-i18n="registration">Registration</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-page="program" data-i18n="program">Program</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-page="sponsors" data-i18n="sponsors">Sponsors</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-page="gallery" data-i18n="gallery">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" data-page="contact" data-i18n="contact">Contact</a></li>
+            </ul>
+            <div class="ms-lg-3">
+                <a href="#" class="btn-register" data-page="submit-abstract" data-i18n="submit_abstract">SUBMIT ABSTRACT</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════ -->
+<div id="home-page" class="page-content active">
+
+    <!-- Hero -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://video-previews.elements.envatousercontent.com/1792273e-6148-46cc-8d0b-b42854a93c8d/watermarked_preview/watermarked_preview.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <div class="hero-badge">2nd International Edition · 2026</div>
+                <h1>MENA Drinking Water<br><em>Conference</em></h1>
+                <p class="subtitle" data-i18n="hero_subtitle">Dedicated to Tap, Bottled & Bulk Waters in the MENA Region</p>
+                <div class="date-badge">
+                    <i class="fas fa-calendar-alt" style="color:var(--gold)"></i>
+                    <strong data-i18n="hero_details">November 5–8, 2026 &nbsp;|&nbsp; Hammamet, Tunisia</strong>
+                </div>
+                <div class="hero-btns">
+                    <a href="#" class="btn-hero-primary" data-page="submit-abstract" data-i18n="submit_abstract">Submit Abstract</a>
+                    <a href="#" class="btn-hero-outline" data-page="about" data-i18n="learn_more">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <a href="#countdown-section" style="color:rgba(255,255,255,0.6)"><i class="fas fa-chevron-down fa-lg"></i></a>
+        </div>
+    </section>
+
+    <!-- Countdown Strip -->
+    <div class="countdown-strip" id="countdown-section">
+        <div class="container">
+            <div class="label" data-i18n="countdown_title">Abstract Submission Deadline</div>
+            <div class="countdown-timer">
+                <div class="cd-item">
+                    <div class="cd-num" id="days">00</div>
+                    <div class="cd-lab" data-i18n="days">Days</div>
+                </div>
+                <div class="cd-item">
+                    <div class="cd-num" id="hours">00</div>
+                    <div class="cd-lab" data-i18n="hours">Hours</div>
+                </div>
+                <div class="cd-item">
+                    <div class="cd-num" id="minutes">00</div>
+                    <div class="cd-lab" data-i18n="minutes">Minutes</div>
+                </div>
+                <div class="cd-item">
+                    <div class="cd-num" id="seconds">00</div>
+                    <div class="cd-lab" data-i18n="seconds">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="container">
+            <div class="row justify-content-center text-center g-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-num">20+</div>
+                        <div class="stat-lab">Countries</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-num">300+</div>
+                        <div class="stat-lab">Participants</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-num">4</div>
+                        <div class="stat-lab">Conference Days</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-num">50+</div>
+                        <div class="stat-lab">Presentations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/F0BhwoF2feY?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="section-eyebrow">About the Conference</div>
+                    <h2 class="section-title" data-i18n="about_title">MENA Drinking Water Conference – DW-MENA 2026</h2>
+                    <p class="mb-3" style="color:var(--text-mid);line-height:1.8" data-i18n="about_lead">DW-MENA is a premier international forum bringing together researchers, water industry professionals, policymakers, and innovators to address the pressing challenges of drinking water quality across the MENA region.</p>
+                    <p style="color:var(--text-mid);line-height:1.8" data-i18n="about_text1">From tap water quality to bottled and bulk water standards, DW-MENA 2026 will foster knowledge exchange and build collaborative frameworks for sustainable water management in an increasingly resource-stressed region.</p>
+                    <div class="d-flex gap-3 mt-4 flex-wrap">
+                        <a href="#" class="btn btn-outline-primary" style="border-color:var(--teal);color:var(--teal)" data-page="program" data-i18n="view_program">View Program</a>
+                        <a href="#" class="btn-submit" data-page="registration" data-i18n="register_now">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Focus -->
+    <section class="section section-bg">
+        <div class="container">
+            <div class="text-center mb-12">
+                <div class="section-eyebrow" data-i18n="main_focus">Conference Pillars</div>
+                <h2 class="section-title centered mx-auto" style="display:inline-block" data-i18n="main_focus_title">Main Focus Areas</h2>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="focus-card">
+                        <div class="focus-icon"><i class="fas fa-tint"></i></div>
+                        <h5 data-i18n="water_quality">Water Quality</h5>
+                        <p data-i18n="water_quality_desc">Assessment and monitoring of physical, chemical, and microbiological parameters affecting drinking water sources and distribution systems across the MENA region.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="focus-card">
+                        <div class="focus-icon"><i class="fas fa-flask"></i></div>
+                        <h5 data-i18n="micropollutants">Micropollutants</h5>
+                        <p data-i18n="micropollutants_desc">Detection, quantification, and removal of emerging contaminants such as pharmaceuticals, endocrine-disrupting compounds, and microplastics in drinking water.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="focus-card">
+                        <div class="focus-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h5 data-i18n="safety_access">Safety & Access</h5>
+                        <p data-i18n="safety_access_desc">Risk-based approaches to ensure safe drinking water, equitable access, and resilience in the face of environmental and socio-economic pressures across the region.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Congress Poster -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-4">
+                <div class="section-eyebrow">Official Poster</div>
+                <h2 class="section-title centered mx-auto" style="display:inline-block">Conference Poster</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center" data-aos="zoom-in">
+                    <img src="affiche.png" alt="DW-MENA 2026 Poster" class="poster-image" onerror="this.src='https://via.placeholder.com/520x740/0a2342/ffffff?text=DW-MENA+2026'">
+                    <div class="mt-4">
+                        <a href="affiche.png" download="DWMENA2026_Poster.png" class="btn-submit">
+                            <i class="fas fa-download me-2"></i>Download Poster
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Water Challenges Video -->
+    <section class="section section-sand">
+        <div class="container">
+            <div class="text-center mb-4">
+                <div class="section-eyebrow">Watch</div>
+                <h2 class="section-title centered mx-auto" style="display:inline-block" data-i18n="water_challenges">Water Challenges in the MENA Region</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-9" data-aos="zoom-in">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/F0BhwoF2feY?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div><!-- end home-page -->
+
+
+<!-- ═══════════════════════════════════
+     ABOUT PAGE
+═══════════════════════════════════ -->
+<div id="about-page" class="page-content">
+    <nav class="breadcrumb-nav"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" data-page="home">Home</a></li><li class="breadcrumb-item active">About</li></ol></nav></div></nav>
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">About DW-MENA 2026</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="150">Our mission, objectives, and host institution</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div data-aos="fade-up">
+                        <div class="section-eyebrow">Our Mission</div>
+                        <h2 class="section-title">MENA Drinking Water Conference</h2>
+                        <p style="color:var(--text-mid);line-height:1.85;margin-bottom:16px">The MENA Drinking Water Conference (DW-MENA) is dedicated to fostering collaboration and knowledge exchange among water professionals, researchers, and policymakers across the MENA region. Our mission is to address the critical challenges facing drinking water resources — from tap to bottled and bulk water — and to promote sustainable, innovative solutions.</p>
+                    </div>
+                    <div class="mt-5" data-aos="fade-up">
+                        <div class="section-eyebrow">Objectives</div>
+                        <h2 class="section-title">Conference Objectives</h2>
+                        <ul style="color:var(--text-mid);line-height:2;padding-left:20px">
+                            <li>Facilitate knowledge sharing on latest research and innovations in drinking water treatment and management</li>
+                            <li>Promote collaboration among MENA countries to address shared water challenges</li>
+                            <li>Discuss policy frameworks and regulatory approaches for sustainable water management</li>
+                            <li>Showcase innovative technologies and best practices in water treatment and distribution</li>
+                            <li>Address emerging contaminants and their impact on water quality and public health</li>
+                            <li>Bridge the gap between scientific research and operational water management</li>
+                        </ul>
+                    </div>
+                    <div class="mt-5" data-aos="fade-up">
+                        <div class="section-eyebrow">Host Institution</div>
+                        <h2 class="section-title">CERTE</h2>
+                        <div class="focus-card mb-4">
+                            <h5 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.15rem;margin-bottom:12px">Water Research and Technologies Center (CERTE)</h5>
+                            <p style="color:var(--text-mid);line-height:1.8;margin-bottom:10px">CERTE is a public research institution with approximately 90 permanent multidisciplinary researchers. Established in 2005 within the Technopark of Borj-Cédria, it operates under the supervision of the Tunisian Ministry of Higher Education and Scientific Research.</p>
+                            <p style="color:var(--text-mid);line-height:1.8">Its main mission is to conduct research, development, innovation, and technological development activities in the field of water, and to transfer scientific results to socio-economic sectors. CERTE is highly active at national, Mediterranean, and international levels across the entire water cycle.</p>
+                        </div>
+                    </div>
+                    <div class="mt-5" data-aos="fade-up">
+                        <div class="section-eyebrow">Partner Laboratory</div>
+                        <h2 class="section-title">LaDVEN Laboratory</h2>
+                        <div class="focus-card">
+                            <p style="color:var(--text-mid);line-height:1.8;margin-bottom:14px">Created in 2006, the LaDVEN laboratory complements CERTE's expertise in the water field. It was established at the request of the Rural Engineering Directorate of the Ministry of Agriculture and SONEDE.</p>
+                            <p style="font-weight:600;color:var(--navy);margin-bottom:8px">Main Research Areas:</p>
+                            <div class="row g-2">
+                                <div class="col-sm-6"><span class="badge-topic">Desalination & Water Valorization</span></div>
+                                <div class="col-sm-6"><span class="badge-topic">Membrane Processes Innovation</span></div>
+                                <div class="col-sm-6"><span class="badge-topic">Water Quality & Monitoring</span></div>
+                                <div class="col-sm-6"><span class="badge-topic">Advanced Treatment & Depollution</span></div>
+                                <div class="col-sm-6"><span class="badge-topic">Sustainable Water Management</span></div>
+                                <div class="col-sm-6"><span class="badge-topic">Geology & Hydrogeology</span></div>
+                                <div class="col-sm-6"><span class="badge-topic">Nanomaterials for Environment</span></div>
+                                <div class="col-sm-6"><span class="badge-topic">Integrated Water Reuse</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5 g-4">
+                        <div class="col-md-6" data-aos="fade-right">
+                            <div class="focus-card h-100">
+                                <div class="focus-icon"><i class="fas fa-users"></i></div>
+                                <h5>Networking Opportunities</h5>
+                                <p>Connect with leading experts, researchers, and practitioners from across the MENA region and beyond.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-left">
+                            <div class="focus-card h-100">
+                                <div class="focus-icon"><i class="fas fa-lightbulb"></i></div>
+                                <h5>Latest Research</h5>
+                                <p>Discover cutting-edge research and innovative solutions in drinking water treatment and management.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     CALL FOR PAPERS PAGE
+═══════════════════════════════════ -->
+<div id="cfp-page" class="page-content">
+    <nav class="breadcrumb-nav"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" data-page="home">Home</a></li><li class="breadcrumb-item active">Call for Papers</li></ol></nav></div></nav>
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">Call for Papers</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="150">Submit your research to DW-MENA 2026 — November 5–8, Hammamet, Tunisia</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-8">
+
+                    <!-- CFP intro -->
+                    <div data-aos="fade-up">
+                        <div class="section-eyebrow">Invitation to Submit</div>
+                        <h2 class="section-title">Call for Papers – DW-MENA 2026</h2>
+                        <p style="color:var(--text-mid);line-height:1.85;margin-bottom:16px">The MENA Drinking Water Conference (DW-MENA 2026) invites researchers, engineers, policymakers, and water industry professionals to submit original contributions related to drinking water quality, treatment, safety, and governance in the MENA region and beyond.</p>
+                        <p style="color:var(--text-mid);line-height:1.85;margin-bottom:16px">DW-MENA 2026 is dedicated to tap, bottled, and bulk waters. Contributions addressing fundamental research as well as applied and operational aspects are welcome. All submissions will undergo double-blind peer review by the Scientific Committee.</p>
+                        <p style="color:var(--text-mid);line-height:1.85">Submissions are invited for <strong>oral presentations</strong> and <strong>poster presentations</strong>. Selected authors may be invited to submit a full paper for publication in a peer-reviewed journal.</p>
+                    </div>
+
+                    <!-- Dates & Deadlines -->
+                    <div class="mt-5" data-aos="fade-up">
+                        <div class="section-eyebrow">Deadlines</div>
+                        <h2 class="section-title">Key Dates & Deadlines</h2>
+                        <div class="focus-card">
+                            <div class="timeline-item-row">
+                                <div class="tl-dot" style="background:var(--teal)"></div>
+                                <div>
+                                    <div class="tl-date">July 15, 2026</div>
+                                    <div class="tl-event">Abstract Submission Deadline</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item-row">
+                                <div class="tl-dot" style="background:var(--teal)"></div>
+                                <div>
+                                    <div class="tl-date">August 31, 2026</div>
+                                    <div class="tl-event">Notification of Abstract Acceptance</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item-row">
+                                <div class="tl-dot" style="background:var(--teal)"></div>
+                                <div>
+                                    <div class="tl-date">September 30, 2026</div>
+                                    <div class="tl-event">Early Bird Registration Deadline</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item-row">
+                                <div class="tl-dot" style="background:var(--teal)"></div>
+                                <div>
+                                    <div class="tl-date">October 20, 2026</div>
+                                    <div class="tl-event">Late Registration Deadline</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item-row">
+                                <div class="tl-dot" style="background:var(--gold)"></div>
+                                <div>
+                                    <div class="tl-date">November 5–8, 2026</div>
+                                    <div class="tl-event">Conference — Hammamet, Tunisia</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topics -->
+                    <div class="mt-5" data-aos="fade-up">
+                        <div class="section-eyebrow">Scope</div>
+                        <h2 class="section-title">Conference Topics</h2>
+                        <p style="color:var(--text-mid);margin-bottom:18px">Submissions are welcome on, but not limited to, the following topics:</p>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <div class="focus-card" style="padding:18px 20px">
+                                    <div class="d-flex align-items-start gap-3">
+                                        <div class="focus-icon" style="width:36px;height:36px;font-size:1rem;flex-shrink:0"><i class="fas fa-tint"></i></div>
+                                        <div>
+                                            <h6 style="color:var(--navy);margin-bottom:4px">Water Quality</h6>
+                                            <p style="font-size:0.82rem;color:var(--text-mid);margin:0">Physical, chemical and microbiological monitoring</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="focus-card" style="padding:18px 20px">
+                                    <div class="d-flex align-items-start gap-3">
+                                        <div class="focus-icon" style="width:36px;height:36px;font-size:1rem;flex-shrink:0"><i class="fas fa-flask"></i></div>
+                                        <div>
+                                            <h6 style="color:var(--navy);margin-bottom:4px">Micropollutants</h6>
+                                            <p style="font-size:0.82rem;color:var(--text-mid);margin:0">Pharmaceuticals, microplastics, endocrine disruptors</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="focus-card" style="padding:18px 20px">
+                                    <div class="d-flex align-items-start gap-3">
+                                        <div class="focus-icon" style="width:36px;height:36px;font-size:1rem;flex-shrink:0"><i class="fas fa-shield-alt"></i></div>
+                                        <div>
+                                            <h6 style="color:var(--navy);margin-bottom:4px">Water Safety & Access</h6>
+                                            <p style="font-size:0.82rem;color:var(--text-mid);margin:0">Risk-based management and equitable access</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="focus-card" style="padding:18px 20px">
+                                    <div class="d-flex align-items-start gap-3">
+                                        <div class="focus-icon" style="width:36px;height:36px;font-size:1rem;flex-shrink:0"><i class="fas fa-bottle-water"></i></div>
+                                        <div>
+                                            <h6 style="color:var(--navy);margin-bottom:4px">Bottled & Bulk Water</h6>
+                                            <p style="font-size:0.82rem;color:var(--text-mid);margin:0">Standards, regulations, and health implications</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="focus-card" style="padding:18px 20px">
+                                    <div class="d-flex align-items-start gap-3">
+                                        <div class="focus-icon" style="width:36px;height:36px;font-size:1rem;flex-shrink:0"><i class="fas fa-cloud-sun-rain"></i></div>
+                                        <div>
+                                            <h6 style="color:var(--navy);margin-bottom:4px">Climate Change & Scarcity</h6>
+                                            <p style="font-size:0.82rem;color:var(--text-mid);margin:0">Adaptation strategies and desalination</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="focus-card" style="padding:18px 20px">
+                                    <div class="d-flex align-items-start gap-3">
+                                        <div class="focus-icon" style="width:36px;height:36px;font-size:1rem;flex-shrink:0"><i class="fas fa-microchip"></i></div>
+                                        <div>
+                                            <h6 style="color:var(--navy);margin-bottom:4px">Innovative Technologies</h6>
+                                            <p style="font-size:0.82rem;color:var(--text-mid);margin:0">Membranes, nanomaterials, AI-based management</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Author Guidelines -->
+                    <div class="mt-5" data-aos="fade-up">
+                        <div class="section-eyebrow">For Authors</div>
+                        <h2 class="section-title">Author Guidelines</h2>
+                        <div class="focus-card">
+                            <h6 style="color:var(--navy);font-weight:700;margin-bottom:10px">Language</h6>
+                            <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:18px">All submissions must be written in <strong>English</strong>.</p>
+
+                            <h6 style="color:var(--navy);font-weight:700;margin-bottom:10px">Abstract Length</h6>
+                            <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:18px">The abstract must be between <strong>200 and 250 words</strong> (maximum 1 page).</p>
+
+                            <h6 style="color:var(--navy);font-weight:700;margin-bottom:10px">Formatting Requirements</h6>
+                            <ul style="color:var(--text-mid);font-size:0.9rem;margin-bottom:18px;line-height:2">
+                                <li>Font: <strong>Times New Roman</strong></li>
+                                <li>Abstract title: 14 pt, Bold</li>
+                                <li>Section titles: 12 pt, Bold</li>
+                                <li>Body text: 12 pt, Regular</li>
+                                <li>Line spacing: 1.15</li>
+                                <li>Margins: 2.5 cm on all sides</li>
+                            </ul>
+
+                            <h6 style="color:var(--navy);font-weight:700;margin-bottom:10px">Required Abstract Structure</h6>
+                            <ul style="color:var(--text-mid);font-size:0.9rem;margin-bottom:18px;line-height:2">
+                                <li><strong>Title</strong> — concise and descriptive</li>
+                                <li><strong>Authors and affiliations</strong> — list all contributing authors</li>
+                                <li><strong>Keywords</strong> — 3 to 5 keywords</li>
+                                <li><strong>Background and objectives</strong></li>
+                                <li><strong>Methodology and results</strong></li>
+                                <li><strong>Conclusion</strong></li>
+                            </ul>
+
+                            <h6 style="color:var(--navy);font-weight:700;margin-bottom:10px">Originality</h6>
+                            <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:18px">All submitted abstracts must represent <strong>original, unpublished work</strong> not currently under review elsewhere. By submitting, all listed authors confirm consent and originality of the work.</p>
+
+                            <h6 style="color:var(--navy);font-weight:700;margin-bottom:10px">Presentation Formats</h6>
+                            <p style="color:var(--text-mid);font-size:0.9rem">Authors may indicate their preference for <strong>oral</strong> or <strong>poster</strong> presentation. Final format is determined by the Scientific Committee. At least one author per accepted abstract must register for the conference.</p>
+                        </div>
+                    </div>
+
+                    <!-- Submission Guidelines -->
+                    <div class="mt-5" data-aos="fade-up">
+                        <div class="section-eyebrow">How to Submit</div>
+                        <h2 class="section-title">Submission Guidelines</h2>
+                        <div class="focus-card">
+                            <h6 style="color:var(--navy);font-weight:700;margin-bottom:10px">Where to Submit</h6>
+                            <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:18px">All abstracts must be submitted electronically via the <strong>Microsoft CMT (Conference Management Toolkit) platform</strong>. The CMT submission link will be made available on this page once the conference site is created. You may also submit through the <a href="#" data-page="submit-abstract" style="color:var(--teal);font-weight:600">online submission form</a> on this website.</p>
+
+                            <h6 style="color:var(--navy);font-weight:700;margin-bottom:10px">How to Submit — Step by Step</h6>
+                            <ol style="color:var(--text-mid);font-size:0.9rem;line-height:2.1;margin-bottom:18px">
+                                <li>Create or log in to your <strong>Microsoft CMT account</strong> at <a href="https://cmt3.research.microsoft.com" target="_blank" rel="noopener" style="color:var(--teal)">cmt3.research.microsoft.com</a></li>
+                                <li>Navigate to the DW-MENA 2026 conference submission page</li>
+                                <li>Click <strong>"Create new submission"</strong> and select the appropriate topic area</li>
+                                <li>Fill in all required fields: title, authors, affiliations, abstract text, and keywords</li>
+                                <li>Indicate your preferred presentation format (oral or poster)</li>
+                                <li>Upload your abstract document if available (.doc, .docx, or .pdf, max 5 MB)</li>
+                                <li>Review your submission and click <strong>"Submit"</strong></li>
+                                <li>You will receive an automatic confirmation email from CMT upon successful submission</li>
+                            </ol>
+
+                            <h6 style="color:var(--navy);font-weight:700;margin-bottom:10px">Accepted File Formats</h6>
+                            <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:18px">.doc · .docx · .pdf (maximum 5 MB)</p>
+
+                            <h6 style="color:var(--navy);font-weight:700;margin-bottom:10px">Confirmation</h6>
+                            <p style="color:var(--text-mid);font-size:0.9rem">Upon submission, you will receive an <strong>automatic acknowledgment email</strong> from the CMT system. If you do not receive a confirmation within 24 hours, please contact us at <a href="/cdn-cgi/l/email-protection#7c180b1119121d3c1f190e0819520e120e08520812" style="color:var(--teal)"><span class="__cf_email__" data-cfemail="b7d3c0dad2d9d6f7d4d2c5c3d299c5d9c5c399c3d9">[email&#160;protected]</span></a>.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4" data-aos="fade-left">
+                    <!-- CTA box -->
+                    <div class="focus-card text-center mb-4" style="background:var(--navy);border-color:var(--navy)">
+                        <div style="color:var(--gold-light);font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">Submission Open</div>
+                        <h4 style="font-family:'Playfair Display',serif;color:#fff;margin-bottom:8px">Submit Your Abstract</h4>
+                        <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin-bottom:20px">Deadline: July 15, 2026</p>
+                        <a href="#" class="btn-hero-primary" data-page="submit-abstract" style="display:inline-block;text-decoration:none;border-radius:8px">Submit Now</a>
+                    </div>
+
+                    <!-- Deadline reminder -->
+                    <div class="focus-card mb-4">
+                        <h6 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:14px">Key Deadlines</h6>
+                        <ul style="list-style:none;padding:0;margin:0;font-size:0.86rem;color:var(--text-mid)">
+                            <li style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--teal);font-weight:700">Jul 15, 2026</span><br>Abstract Submission</li>
+                            <li style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--teal);font-weight:700">Aug 31, 2026</span><br>Acceptance Notification</li>
+                            <li style="padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--teal);font-weight:700">Sep 30, 2026</span><br>Early Registration</li>
+                            <li style="padding:8px 0"><span style="color:var(--gold);font-weight:700">Nov 5–8, 2026</span><br>Conference, Hammamet</li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact for queries -->
+                    <div class="focus-card">
+                        <h6 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:12px">Questions?</h6>
+                        <p style="font-size:0.86rem;color:var(--text-mid);margin-bottom:14px">For submission-related inquiries, please contact the organizing committee.</p>
+                        <p style="font-size:0.86rem;color:var(--text-mid)"><i class="fas fa-envelope me-2" style="color:var(--teal)"></i><a href="/cdn-cgi/l/email-protection#acc8dbc1c9c2cdeccfc9ded8c982dec2ded882d8c2" style="color:var(--teal)"><span class="__cf_email__" data-cfemail="34504359515a557457514640511a465a46401a405a">[email&#160;protected]</span></a></p>
+                        <p style="font-size:0.86rem;color:var(--text-mid)"><i class="fas fa-phone me-2" style="color:var(--teal)"></i>+216 58 262 924</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     TOPICS PAGE
+═══════════════════════════════════ -->
+<div id="topics-page" class="page-content">
+    <nav class="breadcrumb-nav"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" data-page="home">Home</a></li><li class="breadcrumb-item active">Conference Topics</li></ol></nav></div></nav>
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">Conference Topics</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="150">Key themes and research areas of DW-MENA 2026</p>
+        </div>
+    </section>
+    <section class="section section-bg">
+        <div class="container">
+            <p class="text-center mb-5 lead" style="color:var(--text-mid);max-width:640px;margin:0 auto" data-aos="fade-up">The conference focuses on key challenges and innovations related to drinking water — tap, bottled, and bulk — across the MENA region.</p>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="topic-card">
+                        <div class="topic-num">01</div>
+                        <h5>Water Quality</h5>
+                        <p style="color:var(--text-mid);font-size:0.9rem;line-height:1.7;margin-bottom:14px">Assessment and monitoring of physical, chemical, and microbiological parameters affecting drinking water sources and distribution systems.</p>
+                        <span class="badge-topic">Monitoring</span>
+                        <span class="badge-topic">Parameters</span>
+                        <span class="badge-topic">Distribution</span>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="topic-card">
+                        <div class="topic-num">02</div>
+                        <h5>Detection & Treatment of Micropollutants</h5>
+                        <p style="color:var(--text-mid);font-size:0.9rem;line-height:1.7;margin-bottom:14px">Identification, quantification, and removal of emerging contaminants such as pharmaceuticals, endocrine-disrupting compounds, and microplastics.</p>
+                        <span class="badge-topic">Contaminants</span>
+                        <span class="badge-topic">Treatment</span>
+                        <span class="badge-topic">Microplastics</span>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="topic-card">
+                        <div class="topic-num">03</div>
+                        <h5>Drinking Water Safety & Access</h5>
+                        <p style="color:var(--text-mid);font-size:0.9rem;line-height:1.7;margin-bottom:14px">Risk-based approaches to ensure safe drinking water, equitable access, and resilience in the face of environmental and socio-economic pressures.</p>
+                        <span class="badge-topic">Safety</span>
+                        <span class="badge-topic">Access</span>
+                        <span class="badge-topic">Resilience</span>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="topic-card">
+                        <div class="topic-num">04</div>
+                        <h5>Bottled & Bulk Water Standards</h5>
+                        <p style="color:var(--text-mid);font-size:0.9rem;line-height:1.7;margin-bottom:14px">Regulatory frameworks, quality standards, and health implications of bottled and bulk water distribution in MENA countries.</p>
+                        <span class="badge-topic">Bottled Water</span>
+                        <span class="badge-topic">Regulations</span>
+                        <span class="badge-topic">Standards</span>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="topic-card">
+                        <div class="topic-num">05</div>
+                        <h5>Climate Change & Water Scarcity</h5>
+                        <p style="color:var(--text-mid);font-size:0.9rem;line-height:1.7;margin-bottom:14px">Impact of climate change on freshwater availability, desalination advancements, and adaptive management strategies for the MENA region.</p>
+                        <span class="badge-topic">Climate</span>
+                        <span class="badge-topic">Desalination</span>
+                        <span class="badge-topic">Scarcity</span>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="topic-card">
+                        <div class="topic-num">06</div>
+                        <h5>Innovative Treatment Technologies</h5>
+                        <p style="color:var(--text-mid);font-size:0.9rem;line-height:1.7;margin-bottom:14px">Advanced membrane processes, nanomaterials, AI-based water management, and other cutting-edge solutions for drinking water purification.</p>
+                        <span class="badge-topic">Membranes</span>
+                        <span class="badge-topic">AI</span>
+                        <span class="badge-topic">Innovation</span>
+                    </div>
+                </div>
+            </div>
+            <div class="focus-card mt-5 text-center" data-aos="fade-up">
+                <p style="color:var(--text-mid)"><strong style="color:var(--navy)">Main Keywords: </strong>Drinking water · water quality · micropollutants · microplastics · pharmaceuticals · endocrine disruptors · water safety · risk assessment · access to water · MENA region · treatment technologies · bottled water · desalination</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     COMMITTEES PAGE
+═══════════════════════════════════ -->
+<div id="committees-page" class="page-content">
+    <nav class="breadcrumb-nav"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" data-page="home">Home</a></li><li class="breadcrumb-item active">Committees</li></ol></nav></div></nav>
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">Scientific Committees</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="150">Distinguished members guiding DW-MENA 2026</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <div class="section-eyebrow">Leadership</div>
+                <h2 class="section-title centered mx-auto" style="display:inline-block">Organizing Committee</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="committee-card">
+                        <img src="https://images.unsplash.com/photo-1605802927108-4ff34bfe86a9?w=200&auto=format&fit=crop&q=60" alt="Hamza Elfil" class="member-photo">
+                        <h5>Hamza Elfil</h5>
+                        <div class="title">Professor</div>
+                        <div class="role">Water Quality Expert</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="committee-card">
+                        <img src="https://images.unsplash.com/photo-1512907819289-143573530514?q=80&w=200&auto=format&fit=crop" alt="Mohamed Tlili" class="member-photo">
+                        <h5>Mohamed Tlili</h5>
+                        <div class="title">Professor</div>
+                        <div class="role">Environmental Engineer</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="committee-card">
+                        <img src="https://images.unsplash.com/photo-1561092149-cdeb7e35d856?w=200&auto=format&fit=crop&q=60" alt="Sami Khomsi" class="member-photo">
+                        <h5>Sami Khomsi</h5>
+                        <div class="title">Professor</div>
+                        <div class="role">Hydrology Specialist</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="250">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Houda Zendah" class="member-photo">
+                        <h5>Houda Zendah</h5>
+                        <div class="title">Doctor</div>
+                        <div class="role">Public Health Researcher</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Emna Melliti" class="member-photo">
+                        <h5>Emna Melliti</h5>
+                        <div class="title">Doctor</div>
+                        <div class="role">Water Treatment Specialist</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Nesrine Kalboussi" class="member-photo">
+                        <h5>Nesrine Kalboussi</h5>
+                        <div class="title">Doctor</div>
+                        <div class="role">Environmental Chemist</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Nesrine Kamoun" class="member-photo">
+                        <h5>Nesrine Kamoun</h5>
+                        <div class="title">Doctor</div>
+                        <div class="role">Water Policy Expert</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="250">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/women/46.jpg" alt="Kawther Ben Mabrouk" class="member-photo">
+                        <h5>Kawther Ben Mabrouk</h5>
+                        <div class="title">Doctor</div>
+                        <div class="role">Water Microbiology</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Youssef Guesmi" class="member-photo">
+                        <h5>Youssef Guesmi</h5>
+                        <div class="title">Doctor</div>
+                        <div class="role">Water Policy Expert</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Riadh Hanachi" class="member-photo">
+                        <h5>Riadh Hanachi</h5>
+                        <div class="title">Doctor</div>
+                        <div class="role">Infrastructure Specialist</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Nouri Hmidi" class="member-photo">
+                        <h5>Nouri Hmidi</h5>
+                        <div class="title">Engineer</div>
+                        <div class="role">Conference Organization</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="250">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Imen Dhaouidi" class="member-photo">
+                        <h5>Imen Dhaouidi</h5>
+                        <div class="title">Engineer</div>
+                        <div class="role">Logistics Coordinator</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Aymen Bahrini" class="member-photo">
+                        <h5>Aymen Bahrini</h5>
+                        <div class="title">M.</div>
+                        <div class="role">Program Coordination</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="committee-card">
+                        <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Ghazi Chouk" class="member-photo">
+                        <h5>Ghazi Chouk</h5>
+                        <div class="title">M.</div>
+                        <div class="role">Technical Support</div>
+                        <div class="social-links"><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fas fa-graduation-cap"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     REGISTRATION PAGE
+═══════════════════════════════════ -->
+<div id="registration-page" class="page-content">
+    <nav class="breadcrumb-nav"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" data-page="home">Home</a></li><li class="breadcrumb-item active">Registration & Submission</li></ol></nav></div></nav>
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">Registration & Submission</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="150">Join DW-MENA 2026 in Hammamet, Tunisia</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="alert-info-custom mb-5" data-aos="fade-up">
+                <strong>Ready to participate?</strong> Start by filling out the registration form using <a href="#" data-page="submit-abstract">this link</a>. Abstract submission deadline: <strong>July 15, 2026</strong>.
+            </div>
+            <div class="row g-5">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="section-eyebrow">Guidelines</div>
+                    <h3 class="section-title">Abstract Submission</h3>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="focus-card">
+                                <div class="d-flex gap-3">
+                                    <div class="focus-icon" style="flex-shrink:0"><i class="fas fa-cloud-upload-alt"></i></div>
+                                    <div>
+                                        <h5 style="font-size:0.95rem;margin-bottom:6px">Platform & Deadline</h5>
+                                        <p>Submit via our online form.<br><strong>Deadline: July 15, 2026</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="focus-card">
+                                <div class="d-flex gap-3">
+                                    <div class="focus-icon" style="flex-shrink:0"><i class="fas fa-file-alt"></i></div>
+                                    <div>
+                                        <h5 style="font-size:0.95rem;margin-bottom:6px">Length & Format</h5>
+                                        <p>200–250 words / 1 page · Times New Roman · 12pt · 1.15 spacing · 2.5cm margins</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="focus-card">
+                                <div class="d-flex gap-3">
+                                    <div class="focus-icon" style="flex-shrink:0"><i class="fas fa-list-ol"></i></div>
+                                    <div>
+                                        <h5 style="font-size:0.95rem;margin-bottom:6px">Required Sections</h5>
+                                        <p>Title · Authors & affiliations · Keywords (3–5) · Background & objectives · Methodology & results · Conclusion</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="section-eyebrow">Fees</div>
+                    <h3 class="section-title">Registration Fees</h3>
+                    <div class="table-responsive">
+                        <table class="table fee-table rounded overflow-hidden">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Tunisian</th>
+                                    <th>Foreigners</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Academic / Researcher</td><td>750 DT</td><td>300 €</td></tr>
+                                <tr><td>Student</td><td>650 DT</td><td>250 €</td></tr>
+                                <tr><td>Industry Professional</td><td>1 000 DT</td><td>500 €</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-grid gap-3 mt-4">
+                        <a href="#" class="btn-submit text-center text-decoration-none" data-page="submit-abstract">Submit Abstract Now</a>
+                        <a href="#" class="btn btn-outline-secondary" style="border-color:var(--border);color:var(--text-mid)">Download Poster Template</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SUBMIT ABSTRACT PAGE
+═══════════════════════════════════ -->
+<div id="submit-abstract-page" class="page-content">
+    <nav class="breadcrumb-nav"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" data-page="home">Home</a></li><li class="breadcrumb-item"><a href="#" data-page="registration">Registration</a></li><li class="breadcrumb-item active">Submit Abstract</li></ol></nav></div></nav>
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">Submit Your Abstract</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="150">Share your research at DW-MENA 2026</p>
+        </div>
+    </section>
+    <section class="section section-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="form-section" data-aos="fade-up">
+                        <div class="section-eyebrow">Abstract Submission Form</div>
+                        <h2 class="section-title">Submit Your Research</h2>
+                        <p style="color:var(--text-mid);margin-bottom:30px">Please fill out the form below. All fields marked with <strong>*</strong> are required.</p>
+                        <form id="abstract-form" action="https://formspree.io/f/xjvnzkog" method="POST">
+                            <input type="hidden" name="_subject" value="New Abstract Submission – DW-MENA 2026">
+                            <input type="hidden" name="_replyto" value="dwmena@certe.rnrt.tn">
+                            <div class="row mb-3">
+                                <div class="col-md-6"><label class="form-label">First Name *</label><input type="text" class="form-control" name="firstName" required></div>
+                                <div class="col-md-6"><label class="form-label">Last Name *</label><input type="text" class="form-control" name="lastName" required></div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6"><label class="form-label">Email Address *</label><input type="email" class="form-control" name="email" required></div>
+                                <div class="col-md-6"><label class="form-label">Phone Number *</label><input type="tel" class="form-control" name="phone" required></div>
+                            </div>
+                            <div class="mb-3"><label class="form-label">Affiliation / Institution *</label><input type="text" class="form-control" name="affiliation" required></div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Title / Position *</label>
+                                    <select class="form-select" name="title" required>
+                                        <option value="">Select your title</option>
+                                        <option value="student">Student</option>
+                                        <option value="researcher">Researcher</option>
+                                        <option value="industry">Industry Professional</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6"><label class="form-label">Nationality *</label><input type="text" class="form-control" name="nationality" required></div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nature of Participation *</label>
+                                <select class="form-select" name="participation" required>
+                                    <option value="">Select participation type</option>
+                                    <option value="poster">Poster Presentation</option>
+                                    <option value="oral">Oral Presentation</option>
+                                    <option value="none">Attendance Only</option>
+                                </select>
+                            </div>
+                            <div class="mb-3"><label class="form-label">Abstract Title *</label><input type="text" class="form-control" name="abstractTitle" required></div>
+                            <div class="mb-3">
+                                <label class="form-label">Abstract Text *</label>
+                                <textarea class="form-control" name="abstractText" rows="10" required placeholder="Structure: Introduction · Methodology · Results · Conclusion"></textarea>
+                                <div class="form-text" style="color:var(--text-light)">200–250 words recommended.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Keywords *</label>
+                                <input type="text" class="form-control" name="keywords" required placeholder="3 to 5 keywords, separated by commas">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Upload Abstract Document (Optional)</label>
+                                <input type="file" class="form-control" name="file" accept=".doc,.docx,.pdf">
+                                <div class="form-text" style="color:var(--text-light)">Accepted: .doc, .docx, .pdf · Max 5MB</div>
+                            </div>
+                            <div class="mb-4 form-check">
+                                <input type="checkbox" class="form-check-input" id="agreeTerms" name="agreeTerms" required>
+                                <label class="form-check-label" for="agreeTerms" style="font-size:0.88rem">I agree to the <span class="terms-link" style="color:var(--teal);cursor:pointer;text-decoration:underline" data-bs-toggle="modal" data-bs-target="#termsModal">terms and conditions</span> *</label>
+                            </div>
+                            <button type="submit" class="btn-submit">Submit Abstract</button>
+                        </form>
+                    </div>
+
+                    <!-- CMT ACKNOWLEDGMENT — MANDATORY STATIC TEXT — DO NOT MODIFY OR REMOVE -->
+                    <div style="margin-top:32px;padding:20px 24px;background:#f7f9fc;border:1px solid rgba(10,35,66,0.12);border-left:4px solid #0d7377;border-radius:8px">
+                        <p style="font-size:0.82rem;color:#4a5568;margin:0;line-height:1.7">The Microsoft CMT service was used for managing the peer-reviewing process for this conference. This service was provided for free by Microsoft and they bore all expenses, including costs for Azure cloud services as well as for software development and support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     PROGRAM PAGE
+═══════════════════════════════════ -->
+<div id="program-page" class="page-content">
+    <nav class="breadcrumb-nav"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" data-page="home">Home</a></li><li class="breadcrumb-item active">Program & Agenda</li></ol></nav></div></nav>
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">Program & Agenda</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="150">Important dates and conference schedule — November 5–8, 2026</p>
+        </div>
+    </section>
+    <section class="section section-bg">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <div class="section-eyebrow">Key Dates</div>
+                    <h2 class="section-title">Important Dates</h2>
+                    <div class="focus-card">
+                        <div class="timeline-item-row">
+                            <div class="tl-dot"></div>
+                            <div><div class="tl-date">July 15, 2026</div><div class="tl-event">Abstract Submission Deadline</div></div>
+                        </div>
+                        <div class="timeline-item-row">
+                            <div class="tl-dot"></div>
+                            <div><div class="tl-date">August 31, 2026</div><div class="tl-event">Abstract Acceptance Notification</div></div>
+                        </div>
+                        <div class="timeline-item-row">
+                            <div class="tl-dot"></div>
+                            <div><div class="tl-date">September 30, 2026</div><div class="tl-event">Early Registration Deadline</div></div>
+                        </div>
+                        <div class="timeline-item-row">
+                            <div class="tl-dot"></div>
+                            <div><div class="tl-date">October 20, 2026</div><div class="tl-event">Late Registration Deadline</div></div>
+                        </div>
+                        <div class="timeline-item-row">
+                            <div class="tl-dot" style="background:var(--gold)"></div>
+                            <div><div class="tl-date">November 5, 2026</div><div class="tl-event">Opening Ceremony — DW-MENA 2026 Begins</div></div>
+                        </div>
+                        <div class="timeline-item-row">
+                            <div class="tl-dot" style="background:var(--gold)"></div>
+                            <div><div class="tl-date">November 5–8, 2026</div><div class="tl-event">Conference Sessions & Workshops</div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="section-eyebrow">Schedule</div>
+                    <h2 class="section-title">Daily Schedule</h2>
+                    <!-- Day Tabs -->
+                    <ul class="nav nav-tabs mb-3" id="dayTabs">
+                        <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#day1">Day 1 · Nov 5</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#day2">Day 2 · Nov 6</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#day3">Day 3 · Nov 7</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#day4">Day 4 · Nov 8</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="day1">
+                            <div class="table-responsive">
+                                <table class="table schedule-table">
+                                    <thead><tr><th>Time</th><th>Event</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>09:00 – 10:30</td><td>Opening Ceremony <span class="schedule-tag tag-keynote">Keynote</span></td></tr>
+                                        <tr><td>10:30 – 11:00</td><td>Coffee Break & Networking</td></tr>
+                                        <tr><td>11:00 – 12:30</td><td>Plenary Session I: Water Quality <span class="schedule-tag tag-session">Session</span></td></tr>
+                                        <tr><td>12:30 – 14:00</td><td>Lunch Break</td></tr>
+                                        <tr><td>14:00 – 16:00</td><td>Parallel Sessions — Topics 1 & 2 <span class="schedule-tag tag-session">Session</span></td></tr>
+                                        <tr><td>16:00 – 16:30</td><td>Coffee Break</td></tr>
+                                        <tr><td>16:30 – 18:00</td><td>Workshop: Monitoring Technologies <span class="schedule-tag tag-workshop">Workshop</span></td></tr>
+                                        <tr><td>19:30</td><td>Welcome Dinner <span class="schedule-tag tag-social">Social</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="day2">
+                            <div class="table-responsive">
+                                <table class="table schedule-table">
+                                    <thead><tr><th>Time</th><th>Event</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>09:00 – 10:30</td><td>Keynote: Micropollutants in MENA Waters <span class="schedule-tag tag-keynote">Keynote</span></td></tr>
+                                        <tr><td>10:30 – 11:00</td><td>Coffee Break</td></tr>
+                                        <tr><td>11:00 – 12:30</td><td>Plenary Session II: Micropollutants <span class="schedule-tag tag-session">Session</span></td></tr>
+                                        <tr><td>12:30 – 14:00</td><td>Lunch Break</td></tr>
+                                        <tr><td>14:00 – 16:00</td><td>Poster Session I <span class="schedule-tag tag-session">Session</span></td></tr>
+                                        <tr><td>16:00 – 16:30</td><td>Coffee Break</td></tr>
+                                        <tr><td>16:30 – 18:00</td><td>Panel: Bottled Water Standards <span class="schedule-tag tag-workshop">Workshop</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="day3">
+                            <div class="table-responsive">
+                                <table class="table schedule-table">
+                                    <thead><tr><th>Time</th><th>Event</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>09:00 – 10:30</td><td>Keynote: Climate Change & Water Scarcity <span class="schedule-tag tag-keynote">Keynote</span></td></tr>
+                                        <tr><td>10:30 – 11:00</td><td>Coffee Break</td></tr>
+                                        <tr><td>11:00 – 12:30</td><td>Plenary Session III: Safety & Access <span class="schedule-tag tag-session">Session</span></td></tr>
+                                        <tr><td>12:30 – 14:00</td><td>Lunch Break</td></tr>
+                                        <tr><td>14:00 – 16:00</td><td>Parallel Sessions — Topics 3 & 4 <span class="schedule-tag tag-session">Session</span></td></tr>
+                                        <tr><td>16:00 – 16:30</td><td>Coffee Break</td></tr>
+                                        <tr><td>16:30 – 18:00</td><td>Workshop: Desalination Technologies <span class="schedule-tag tag-workshop">Workshop</span></td></tr>
+                                        <tr><td>19:30</td><td>Gala Dinner <span class="schedule-tag tag-social">Social</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="day4">
+                            <div class="table-responsive">
+                                <table class="table schedule-table">
+                                    <thead><tr><th>Time</th><th>Event</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>09:00 – 10:30</td><td>Plenary Session IV: Innovations <span class="schedule-tag tag-session">Session</span></td></tr>
+                                        <tr><td>10:30 – 11:00</td><td>Coffee Break</td></tr>
+                                        <tr><td>11:00 – 12:30</td><td>Poster Session II & Awards <span class="schedule-tag tag-session">Session</span></td></tr>
+                                        <tr><td>12:30 – 14:00</td><td>Lunch Break</td></tr>
+                                        <tr><td>14:00 – 15:30</td><td>Round Table: Policy & Governance <span class="schedule-tag tag-workshop">Workshop</span></td></tr>
+                                        <tr><td>15:30 – 17:00</td><td>Closing Ceremony & Best Paper Awards <span class="schedule-tag tag-keynote">Closing</span></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Themes -->
+                    <div class="focus-card mt-4">
+                        <h5 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:14px">Conference Themes</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge-topic">Water Quality Monitoring</span>
+                            <span class="badge-topic">Emerging Contaminants</span>
+                            <span class="badge-topic">Water Distribution</span>
+                            <span class="badge-topic">Climate Change</span>
+                            <span class="badge-topic">Policy & Governance</span>
+                            <span class="badge-topic">Water Scarcity</span>
+                            <span class="badge-topic">Desalination</span>
+                            <span class="badge-topic">Bottled Water Standards</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     SPONSORS PAGE
+═══════════════════════════════════ -->
+<div id="sponsors-page" class="page-content">
+    <nav class="breadcrumb-nav"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" data-page="home">Home</a></li><li class="breadcrumb-item active">Sponsors</li></ol></nav></div></nav>
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">Our Sponsors</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="150">Supporting the future of water in the MENA region</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="sponsor-tier-title" data-aos="fade-up">Platinum Sponsors</div>
+            <div class="row justify-content-center g-3 mb-5">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100"><div class="sponsor-logo"><img src="https://via.placeholder.com/300x150/0a2342/ffffff?text=WaterTech" alt="WaterTech"></div></div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200"><div class="sponsor-logo"><img src="https://via.placeholder.com/300x150/0a2342/ffffff?text=AquaSolutions" alt="AquaSolutions"></div></div>
+            </div>
+            <div class="sponsor-tier-title" data-aos="fade-up">Gold Sponsors</div>
+            <div class="row justify-content-center g-3 mb-5">
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100"><div class="sponsor-logo"><img src="https://via.placeholder.com/250x100/0d7377/ffffff?text=HydroPure" alt="HydroPure"></div></div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200"><div class="sponsor-logo"><img src="https://via.placeholder.com/250x100/0d7377/ffffff?text=ClearFlow" alt="ClearFlow"></div></div>
+                <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300"><div class="sponsor-logo"><img src="https://via.placeholder.com/250x100/0d7377/ffffff?text=AquaNet" alt="AquaNet"></div></div>
+            </div>
+            <div class="sponsor-tier-title" data-aos="fade-up">Silver Sponsors</div>
+            <div class="row justify-content-center g-3">
+                <div class="col-md-2 col-sm-4" data-aos="zoom-in" data-aos-delay="100"><div class="sponsor-logo"><img src="https://via.placeholder.com/200x80/c9a84c/ffffff?text=WaterCare" alt="WaterCare"></div></div>
+                <div class="col-md-2 col-sm-4" data-aos="zoom-in" data-aos-delay="200"><div class="sponsor-logo"><img src="https://via.placeholder.com/200x80/c9a84c/ffffff?text=PureSource" alt="PureSource"></div></div>
+                <div class="col-md-2 col-sm-4" data-aos="zoom-in" data-aos-delay="300"><div class="sponsor-logo"><img src="https://via.placeholder.com/200x80/c9a84c/ffffff?text=AquaTech" alt="AquaTech"></div></div>
+                <div class="col-md-2 col-sm-4" data-aos="zoom-in" data-aos-delay="400"><div class="sponsor-logo"><img src="https://via.placeholder.com/200x80/c9a84c/ffffff?text=HydroLogic" alt="HydroLogic"></div></div>
+            </div>
+            <div class="text-center mt-5 focus-card" data-aos="fade-up" style="max-width:540px;margin:40px auto 0">
+                <div class="focus-icon mx-auto mb-3"><i class="fas fa-handshake"></i></div>
+                <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:10px">Become a Sponsor</h3>
+                <p style="color:var(--text-mid);margin-bottom:20px">Join our prestigious group of sponsors and support the advancement of drinking water research across the MENA region.</p>
+                <a href="#" class="btn-submit" data-page="contact">Contact Us</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     GALLERY PAGE
+═══════════════════════════════════ -->
+<div id="gallery-page" class="page-content">
+    <nav class="breadcrumb-nav"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" data-page="home">Home</a></li><li class="breadcrumb-item active">Gallery</li></ol></nav></div></nav>
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">Conference Gallery</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="150">Previous editions and water conservation initiatives</p>
+        </div>
+    </section>
+    <section class="section section-bg">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80" alt="Previous Conference">
+                        <div class="gallery-overlay"><p>Previous Conference · DWatMed 2022</p></div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1564419320461-6870880221ad?auto=format&fit=crop&w=800&q=80" alt="Water Treatment">
+                        <div class="gallery-overlay"><p>Water Treatment · Advanced filtration</p></div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=800&q=80" alt="Water Research">
+                        <div class="gallery-overlay"><p>Research & Development · Lab analysis</p></div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1700030797146-8c78f1f1e4e1?auto=format&fit=crop&w=800&q=80" alt="Water Sources">
+                        <div class="gallery-overlay"><p>Water Sources · Natural reservoirs</p></div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1727590045119-19acab908949?auto=format&fit=crop&w=800&q=80" alt="Water Distribution">
+                        <div class="gallery-overlay"><p>Water Distribution · Infrastructure</p></div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1690898796546-dd4b20c5efe1?auto=format&fit=crop&w=800&q=80" alt="Water Quality">
+                        <div class="gallery-overlay"><p>Water Quality · Testing & monitoring</p></div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item" style="height:280px">
+                        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1000&q=80" alt="Technology">
+                        <div class="gallery-overlay"><p>Technology · Innovative solutions</p></div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="gallery-item" style="height:280px">
+                        <img src="https://images.unsplash.com/photo-1570804439979-80172fe9c28c?auto=format&fit=crop&w=1000&q=80" alt="Field Work">
+                        <div class="gallery-overlay"><p>Field Work · Water sampling</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     CONTACT PAGE
+═══════════════════════════════════ -->
+<div id="contact-page" class="page-content">
+    <nav class="breadcrumb-nav"><div class="container"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#" data-page="home">Home</a></li><li class="breadcrumb-item active">Contact</li></ol></nav></div></nav>
+    <section class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">Contact Us</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="150">Get in touch with the DW-MENA 2026 team</p>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="row g-5 justify-content-center">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <div class="form-section">
+                        <div class="section-eyebrow">Send a Message</div>
+                        <h2 class="section-title">Get In Touch</h2>
+                        <form id="contact-form" action="https://formspree.io/f/xjvnzkog" method="POST">
+                            <input type="hidden" name="_subject" value="Contact Form – DW-MENA 2026">
+                            <div class="row mb-3">
+                                <div class="col-md-6"><label class="form-label">Your Name</label><input type="text" class="form-control" name="name" required></div>
+                                <div class="col-md-6"><label class="form-label">Your Email</label><input type="email" class="form-control" name="email" required></div>
+                            </div>
+                            <div class="mb-3"><label class="form-label">Subject</label><input type="text" class="form-control" name="subject" required></div>
+                            <div class="mb-3"><label class="form-label">Your Message</label><textarea class="form-control" name="message" rows="5" required></textarea></div>
+                            <div class="mb-4"><label class="form-label">Attach File (optional)</label><input type="file" class="form-control" name="file"></div>
+                            <button type="submit" class="btn-submit">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="mb-4">
+                        <div class="section-eyebrow">Details</div>
+                        <h2 class="section-title">Contact Details</h2>
+                    </div>
+                    <div class="contact-card mb-3">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <h6 style="font-weight:700;margin-bottom:6px">Address</h6>
+                        <p style="color:var(--text-mid);font-size:0.88rem">Hammamet, Tunisia<br>Conference Venue: TBA</p>
+                    </div>
+                    <div class="contact-card mb-3">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <h6 style="font-weight:700;margin-bottom:6px">Phone</h6>
+                        <p style="color:var(--text-mid);font-size:0.88rem">+216 58 262 924</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <h6 style="font-weight:700;margin-bottom:6px">Email</h6>
+                        <p style="color:var(--text-mid);font-size:0.88rem"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cca8bba1a9a2ad8cafa9beb8a9e2bea2beb8e2b8a2">[email&#160;protected]</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</main><!-- end main -->
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <h5>DW-MENA 2026</h5>
+                <p style="font-size:0.88rem;line-height:1.7;margin-bottom:16px">The MENA Drinking Water Conference brings together researchers, practitioners, and policymakers to address drinking water challenges across the MENA region.</p>
+                <p style="font-size:0.85rem"><i class="fas fa-envelope me-2" style="color:var(--gold)"></i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5e3a29333b303f1e3d3b2c2a3b702c302c2a702a30">[email&#160;protected]</a></p>
+                <p style="font-size:0.85rem"><i class="fas fa-phone me-2" style="color:var(--gold)"></i>+216 58 262 924</p>
+                <p style="font-size:0.85rem"><i class="fas fa-map-marker-alt me-2" style="color:var(--gold)"></i>Hammamet, Tunisia</p>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <h5>Quick Links</h5>
+                <ul>
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li><a href="#" data-page="about">About</a></li>
+                    <li><a href="#" data-page="cfp">Call for Papers</a></li>
+                    <li><a href="#" data-page="topics">Topics</a></li>
+                    <li><a href="#" data-page="committees">Committees</a></li>
+                    <li><a href="#" data-page="registration">Registration</a></li>
+                    <li><a href="#" data-page="program">Program</a></li>
+                    <li><a href="#" data-page="gallery">Gallery</a></li>
+                    <li><a href="#" data-page="contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5>Newsletter</h5>
+                <p style="font-size:0.88rem">Subscribe for the latest updates on DW-MENA 2026.</p>
+                <div class="input-group mt-3">
+                    <input type="email" class="form-control" placeholder="Email Address" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff;font-size:0.85rem">
+                    <button class="btn btn-submit" type="submit" style="padding:0 16px;border-radius:0 6px 6px 0">Subscribe</button>
+                </div>
+                <div class="footer-social mt-3">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5>Important Dates</h5>
+                <ul>
+                    <li style="margin-bottom:10px"><span style="color:var(--gold);font-weight:600;display:block;font-size:0.8rem">Abstract Submission</span>July 15, 2026</li>
+                    <li style="margin-bottom:10px"><span style="color:var(--gold);font-weight:600;display:block;font-size:0.8rem">Acceptance Notification</span>August 31, 2026</li>
+                    <li style="margin-bottom:10px"><span style="color:var(--gold);font-weight:600;display:block;font-size:0.8rem">Early Registration</span>September 30, 2026</li>
+                    <li><span style="color:var(--gold);font-weight:600;display:block;font-size:0.8rem">Conference</span>November 5–8, 2026</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-divider text-center">
+            <p class="footer-bottom">&copy; 2026 DW-MENA – MENA Drinking Water Conference. Organized by CERTE / LaDVEN. All rights reserved.</p>
+            <p style="font-size:0.78rem;color:rgba(255,255,255,0.38);margin-top:12px;max-width:820px;margin-left:auto;margin-right:auto;line-height:1.65">The Microsoft CMT service was used for managing the peer-reviewing process for this conference. This service was provided for free by Microsoft and they bore all expenses, including costs for Azure cloud services as well as for software development and support.</p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ═══ TERMS MODAL ═══ -->
+<div class="modal fade" id="termsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Terms and Conditions — Abstract Submission</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <h6>1. Submission Guidelines</h6>
+                <p>All abstracts must be submitted in English, following the specified formatting guidelines (200–250 words, Times New Roman, 12pt, 1.15 spacing).</p>
+                <h6>2. Originality</h6>
+                <p>Abstracts must represent original work not previously published or presented. By submitting, you confirm originality and that all authors agree.</p>
+                <h6>3. Review Process</h6>
+                <p>Abstracts undergo peer review by the Scientific Committee. Notification of acceptance: August 31, 2026.</p>
+                <h6>4. Presentation Format</h6>
+                <p>Accepted abstracts may be scheduled for oral or poster presentation. The Scientific Committee determines the format.</p>
+                <h6>5. Copyright</h6>
+                <p>By submitting, authors grant DW-MENA 2026 the right to publish abstracts in conference materials. Authors retain copyright of their full work.</p>
+                <h6>6. Registration</h6>
+                <p>At least one author must register and pay by the early registration deadline (September 30, 2026).</p>
+                <h6>7. Withdrawal Policy</h6>
+                <p>Withdrawals must be notified in writing before October 10, 2026.</p>
+                <h6>8. Data Privacy</h6>
+                <p>Personal information will be used solely for conference-related purposes and will not be shared with third parties.</p>
+                <h6>9. Code of Conduct</h6>
+                <p>All participants are expected to maintain professional standards of conduct and treat all attendees with respect.</p>
+                <h6>10. Liability</h6>
+                <p>Conference organizers are not liable for any loss, injury, or damage during the conference.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 900, once: true, offset: 80 });
+
+// ── COUNTDOWN ──────────────────────────────────
+function updateCountdown() {
+    const deadline = new Date('July 15, 2026 23:59:59').getTime();
+    const now = new Date().getTime();
+    const diff = deadline - now;
+    if (diff < 0) {
+        ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '00');
+        const lbl = document.querySelector('.countdown-strip .label');
+        if (lbl) lbl.textContent = 'Abstract Submission Closed';
+        return;
+    }
+    document.getElementById('days').textContent    = String(Math.floor(diff / 86400000)).padStart(2,'0');
+    document.getElementById('hours').textContent   = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+    document.getElementById('minutes').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    document.getElementById('seconds').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// ── I18N ──────────────────────────────────────
+const translations = {
+    en: {
+        home:'Home', about:'About', topics:'Topics', committees:'Committees',
+        registration:'Registration', program:'Program', sponsors:'Sponsors',
+        gallery:'Gallery', contact:'Contact', submit_abstract:'SUBMIT ABSTRACT',
+        hero_title:'MENA Drinking Water Conference',
+        hero_subtitle:'Dedicated to Tap, Bottled & Bulk Waters in the MENA Region',
+        hero_details:'November 5–8, 2026  |  Hammamet, Tunisia',
+        learn_more:'Learn More', countdown_title:'Abstract Submission Deadline',
+        days:'Days', hours:'Hours', minutes:'Minutes', seconds:'Seconds',
+        about_title:'MENA Drinking Water Conference – DW-MENA 2026',
+        about_lead:'DW-MENA is a premier international forum bringing together researchers, water industry professionals, policymakers, and innovators to address the pressing challenges of drinking water quality across the MENA region.',
+        about_text1:'From tap water quality to bottled and bulk water standards, DW-MENA 2026 will foster knowledge exchange and collaborative frameworks for sustainable water management.',
+        view_program:'View Program', register_now:'Register Now',
+        main_focus:'Conference Pillars', main_focus_title:'Main Focus Areas',
+        water_quality:'Water Quality',
+        water_quality_desc:'Assessment and monitoring of physical, chemical, and microbiological parameters affecting drinking water sources and distribution systems.',
+        micropollutants:'Micropollutants',
+        micropollutants_desc:'Detection, quantification, and removal of emerging contaminants such as pharmaceuticals, endocrine-disrupting compounds, and microplastics.',
+        safety_access:'Safety & Access',
+        safety_access_desc:'Risk-based approaches to ensure safe drinking water, equitable access, and resilience in the face of environmental pressures.',
+        water_challenges:'Water Challenges in the MENA Region',
+        your_name:'Your Name', your_email:'Your Email', subject:'Subject',
+        your_message:'Your Message', send_message:'Send Message',
+    },
+    fr: {
+        home:'Accueil', about:'À propos', topics:'Thèmes', committees:'Comités',
+        registration:'Inscription', program:'Programme', sponsors:'Sponsors',
+        gallery:'Galerie', contact:'Contact', submit_abstract:'SOUMETTRE UN RÉSUMÉ',
+        hero_title:'Conférence MENA sur l\'Eau Potable',
+        hero_subtitle:'Dédiée à l\'Eau du Robinet, en Bouteille et en Vrac dans la région MENA',
+        hero_details:'5–8 Novembre 2026  |  Hammamet, Tunisie',
+        learn_more:'En savoir plus', countdown_title:'Date limite de soumission des résumés',
+        days:'Jours', hours:'Heures', minutes:'Minutes', seconds:'Secondes',
+        about_title:'Conférence MENA sur l\'Eau Potable – DW-MENA 2026',
+        about_lead:'DW-MENA est un forum international de premier plan réunissant chercheurs, professionnels de l\'eau, décideurs et innovateurs pour relever les défis de la qualité de l\'eau potable dans la région MENA.',
+        about_text1:'De la qualité de l\'eau du robinet aux normes de l\'eau en bouteille et en vrac, DW-MENA 2026 favorisera l\'échange de connaissances pour une gestion durable de l\'eau.',
+        view_program:'Voir le programme', register_now:'S\'inscrire maintenant',
+        main_focus:'Piliers de la conférence', main_focus_title:'Domaines principaux',
+        water_quality:'Qualité de l\'eau',
+        water_quality_desc:'Évaluation et surveillance des paramètres physiques, chimiques et microbiologiques affectant les sources d\'eau potable.',
+        micropollutants:'Micropolluants',
+        micropollutants_desc:'Identification, quantification et élimination des contaminants émergents tels que les produits pharmaceutiques et les microplastiques.',
+        safety_access:'Sécurité et accès',
+        safety_access_desc:'Approches basées sur les risques pour garantir une eau potable sûre et un accès équitable.',
+        water_challenges:'Défis de l\'eau dans la région MENA',
+        your_name:'Votre nom', your_email:'Votre email', subject:'Sujet',
+        your_message:'Votre message', send_message:'Envoyer',
+    }
+};
+
+function setLanguage(lang) {
+    document.getElementById('language-select').value = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const val = translations[lang] && translations[lang][key];
+        if (!val) return;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = val;
+        else el.textContent = val;
+    });
+    localStorage.setItem('dw-mena-lang', lang);
+}
+
+// ── NAVIGATION ────────────────────────────────
+document.addEventListener('DOMContentLoaded', function () {
+    const pageLinks = document.querySelectorAll('[data-page]');
+    const pages = document.querySelectorAll('.page-content');
+
+    function showPage(id) {
+        pages.forEach(p => p.classList.remove('active'));
+        const target = document.getElementById(id + '-page');
+        if (target) { target.classList.add('active'); window.scrollTo(0,0); history.pushState(null, null, '#' + id); }
+        pageLinks.forEach(l => {
+            l.classList.toggle('active', l.getAttribute('data-page') === id);
+        });
+        // Collapse navbar on mobile
+        const navCollapse = document.getElementById('navbarNav');
+        if (navCollapse && navCollapse.classList.contains('show')) {
+            new bootstrap.Collapse(navCollapse).hide();
+        }
+    }
+
+    pageLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(this.getAttribute('data-page'));
+        });
+    });
+
+    window.addEventListener('popstate', () => {
+        const hash = location.hash.substring(1);
+        if (hash && document.getElementById(hash + '-page')) showPage(hash); else showPage('home');
+    });
+
+    const hash = location.hash.substring(1);
+    if (hash && document.getElementById(hash + '-page')) showPage(hash); else showPage('home');
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+          document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── FORMS ──────────────────────────────────
+    document.getElementById('abstract-form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        btn.textContent = 'Submitted ✓';
+        btn.style.background = '#0d7377';
+        btn.disabled = true;
+        alert('Thank you! Your abstract has been submitted. We will review it and get back to you.');
+        this.reset();
+        btn.textContent = 'Submit Abstract';
+        btn.disabled = false;
+    });
+
+    document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        btn.textContent = 'Sent ✓';
+        btn.style.background = '#0d7377';
+        btn.disabled = true;
+        alert('Thank you for your message! We will get back to you shortly.');
+        this.reset();
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+    });
+
+    // ── LANGUAGE ───────────────────────────────
+    const langSelect = document.getElementById('language-select');
+    if (langSelect) {
+        langSelect.addEventListener('change', e => setLanguage(e.target.value));
+        setLanguage(localStorage.getItem('dw-mena-lang') || 'en');
+    }
+});
+</script>
+</body>
+</html>
